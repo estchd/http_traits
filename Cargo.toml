@@ -1,0 +1,13 @@
+[package]
+name = "http_traits"
+version = "0.1.0"
+edition = "2024"
+
+[features]
+reqwest = ["dep:reqwest"]
+
+[dependencies]
+http = "1.4.0"
+url = "2.5.7"
+serde = "1.0.228"
+reqwest = { version = "0.13.1", optional = true }
