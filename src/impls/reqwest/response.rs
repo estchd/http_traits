@@ -1,3 +1,4 @@
+use bytes::Bytes;
 use serde::de::DeserializeOwned;
 use crate::impls::reqwest::status_code::ReqwestStatusCode;
 
@@ -14,5 +15,11 @@ impl crate::response::Response for ReqwestResponse {
 
 	async fn json<T: DeserializeOwned>(self) -> Result<T, Self::JsonError> {
 		reqwest::Response::json(self).await
+	}
+
+	type ByteError = reqwest::Error;
+
+	async fn bytes(self) -> Result<Bytes, Self::ByteError> {
+		reqwest::Response::bytes(self).await
 	}
 }

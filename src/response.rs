@@ -1,4 +1,5 @@
 use std::error::Error;
+use bytes::Bytes;
 use serde::de::DeserializeOwned;
 use crate::status_code::StatusCode;
 
@@ -10,4 +11,8 @@ pub trait Response {
 	type JsonError: Error;
 
 	fn json<T: DeserializeOwned>(self) -> impl Future<Output = Result<T, Self::JsonError>>;
+
+	type ByteError: Error;
+
+	fn bytes(self) -> impl Future<Output = Result<Bytes, Self::ByteError>>;
 }
