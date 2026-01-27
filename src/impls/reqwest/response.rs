@@ -22,4 +22,28 @@ impl crate::response::Response for ReqwestResponse {
 	async fn bytes(self) -> Result<Bytes, Self::ByteError> {
 		reqwest::Response::bytes(self).await
 	}
+
+	fn content_type(&self) -> Option<String> {
+		let value = self.headers().get("content-type");
+
+		if value.is_none() {
+			return None;
+		}
+
+		let value = value.unwrap();
+
+		value.to_str().map(|v| v.to_owned()).ok()
+	}
+
+	fn content_disposition(&self) -> Option<String> {
+		let value = self.headers().get("content-disposition");
+
+		if value.is_none() {
+			return None;
+		}
+
+		let value = value.unwrap();
+
+		value.to_str().map(|v| v.to_owned()).ok()
+	}
 }

@@ -15,4 +15,8 @@ pub trait Response {
 	type ByteError: Error;
 
 	fn bytes(self) -> impl Future<Output = Result<Bytes, Self::ByteError>>;
+
+	fn content_type(&self) -> Option<String>;
+
+	fn content_disposition(&self) -> Option<String>;
 }
