@@ -1,6 +1,7 @@
 use std::error::Error;
 use std::time::Duration;
 use serde::Serialize;
+use crate::form::Form;
 use crate::request::Request;
 use crate::response::Response;
 use crate::version::Version;
@@ -33,6 +34,10 @@ pub trait RequestBuilder: Sized {
 	fn with_version(self, version: Self::Version) -> Self;
 
 	fn with_timeout(self, timeout: Duration) -> Self;
+
+	type Form: Form;
+
+	fn with_multipart(self, form: Self::Form) -> Self;
 
 	fn try_clone(&self) -> Option<Self>;
 }

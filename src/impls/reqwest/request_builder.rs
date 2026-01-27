@@ -1,5 +1,6 @@
 use std::time::Duration;
 use serde::Serialize;
+use crate::impls::reqwest::form::ReqwestForm;
 use crate::impls::reqwest::request::ReqwestRequest;
 use crate::impls::reqwest::response::ReqwestResponse;
 use crate::impls::reqwest::version::ReqwestVersion;
@@ -49,6 +50,12 @@ impl crate::request_builder::RequestBuilder for ReqwestRequestBuilder {
 
 	fn with_timeout(self, timeout: Duration) -> Self {
 		reqwest::RequestBuilder::timeout(self, timeout)
+	}
+
+	type Form = ReqwestForm;
+
+	fn with_multipart(self, form: Self::Form) -> Self {
+		reqwest::RequestBuilder::multipart(self, form)
 	}
 
 	fn try_clone(&self) -> Option<Self> {
