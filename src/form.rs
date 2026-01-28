@@ -4,8 +4,6 @@ use crate::form_part::FormPart;
 pub trait Form: Default {
 	type Part: FormPart<FileError = Self::FileError>;
 
-	fn boundary(&self) -> String;
-
 	fn with_part(self, name: &str, part: Self::Part) -> Self;
 
 	fn with_text(self, name: &str, value: &str) -> Self {

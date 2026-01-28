@@ -7,10 +7,6 @@ pub type ReqwestForm = reqwest::multipart::Form;
 impl Form for ReqwestForm {
 	type Part = ReqwestFormPart;
 
-	fn boundary(&self) -> String {
-		reqwest::multipart::Form::boundary(self).to_owned()
-	}
-
 	fn with_part(self, name: &str, part: Self::Part) -> Self {
 		reqwest::multipart::Form::part(self, name.to_owned(), part)
 	}
