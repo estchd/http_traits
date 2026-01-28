@@ -1,6 +1,7 @@
 use crate::impls::ehttp::error::EHTTPError;
 use crate::status_code::StatusCode;
 
+#[derive(Debug, Copy, Clone, Eq, PartialEq)]
 pub struct EHTTPStatusCode {
 	code: u16,
 }

@@ -1,5 +1,6 @@
 use crate::version::Version;
 
+#[derive(Debug, Copy, Clone)]
 pub struct EHTTPVersion {
 
 }

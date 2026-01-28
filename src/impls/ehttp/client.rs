@@ -6,6 +6,7 @@ use crate::impls::ehttp::request::EHTTPRequest;
 use crate::impls::ehttp::request_builder::EHTTPRequestBuilder;
 use crate::impls::ehttp::response::EHTTPResponse;
 
+#[derive(Debug, Copy, Clone)]
 pub struct EHTTPClient;
 
 impl Client for EHTTPClient {

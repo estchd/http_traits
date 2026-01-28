@@ -2,12 +2,14 @@ use std::io::Read;
 use crate::form_part::FormPart;
 use crate::impls::ehttp::form_part::EHTTPFormPartData::{Bytes, File, Text};
 
+#[derive(Debug, Clone)]
 pub(super) enum EHTTPFormPartData {
 	Text(String),
 	Bytes(Vec<u8>),
 	File(String, Vec<u8>)
 }
 
+#[derive(Debug, Clone)]
 pub struct EHTTPFormPart {
 	pub(super) file_name: Option<String>,
 	pub(super) data: EHTTPFormPartData
