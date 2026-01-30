@@ -14,6 +14,10 @@ impl FormPart for ReqwestFormPart {
 
 	type FileError = io::Error;
 
+	fn file_bytes(_mime: String, _bytes: &[u8]) -> Self {
+		unimplemented!("Reqwest doesnt support file parts from bytes yet")
+	}
+
 	async fn file(path: &str) -> Result<Self, Self::FileError> {
 		reqwest::multipart::Part::file(path.to_owned()).await
 	}

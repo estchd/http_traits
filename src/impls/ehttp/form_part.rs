@@ -32,6 +32,13 @@ impl FormPart for EHTTPFormPart {
 
 	type FileError = std::io::Error;
 
+	fn file_bytes(mime: String, bytes: &[u8]) -> Self {
+		Self {
+			file_name: None,
+			data: File(mime, bytes.to_owned())
+		}
+	}
+
 	async fn file(path: &str) -> Result<Self, Self::FileError> {
 		let mime = mime_guess::from_path(path).first_or_octet_stream()
 			.to_string();

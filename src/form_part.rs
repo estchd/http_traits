@@ -8,6 +8,8 @@ pub trait FormPart: Sized {
 
 	type FileError: Error;
 
+	fn file_bytes(mime: String, bytes: &[u8]) -> Self;
+
 	fn file(path: &str) -> impl Future<Output=Result<Self, Self::FileError>>;
 
 	fn with_file_name(self, file_name: &str) -> Self;
